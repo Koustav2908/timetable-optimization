@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+<!---->
+{% from 'bootstrap5/form.html' import render_form %}
+<!---->
+{% block title %} Form {% endblock %}
+<!---->
+{% block content %}
+<div class="container">
+    <h1 class="heading">Fill up the details</h1>
+    <form method="post" action="{{ url_for('generate') }}" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="course" class="form-label">
+                    {{ form.course.label }}
+                </label>
+                {{ form.course(class_="form-control") }}
+                <!---->
+                {% if form.course.errors %}
+                <div class="text-danger">
+                    {% for error in form.course.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                <label for="days_per_week" class="form-label">
+                    {{ form.days_per_week.label }}
+                </label>
+                {{ form.days_per_week(class_="form-control") }}
+                <!---->
+                {% if form.days_per_week.errors %}
+                <div class="text-danger">
+                    {% for error in form.days_per_week.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-6">
+                <label for="periods" class="form-label">
+                    {{ form.periods.label }}
+                </label>
+                {{ form.periods(class_="form-control") }}
+                <!---->
+                {% if form.periods.errors %}
+                <div class="text-danger">
+                    {% for error in form.periods.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-6">
+                <label for="duration" class="form-label">
+                    {{ form.duration.label }}
+                </label>
+                {{ form.duration(class_="form-control") }}
+                <!---->
+                {% if form.duration.errors %}
+                <div class="text-danger">
+                    {% for error in form.duration.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col-6">
+                <label for="lunch_break" class="form-label">
+                    {{ form.lunch_break.label }}
+                </label>
+                {{ form.lunch_break(class_="form-control") }}
+                <!---->
+                {% if form.lunch_break.errors %}
+                <div class="text-danger">
+                    {% for error in form.lunch_break.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                <label for="lunch_break_time" class="form-label">
+                    {{ form.lunch_break_time.label }}
+                </label>
+                {{ form.lunch_break_time(class_="form-control") }}
+                <!---->
+                {% if form.lunch_break_time.errors %}
+                <div class="text-danger">
+                    {% for error in form.lunch_break_time.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <hr />
+
+        <div>
+            {% for sub_form in form.subjects_faculties: %}
+            <div class="row mb-3">
+                {{ sub_form.hidden_tag() }}
+                <div class="col-5">
+                    <label for="subject" class="form-label">
+                        {{ sub_form.subject.label }}
+                    </label>
+                    {{ sub_form.subject(class_="form-control mb-3") }}
+                    <!---->
+                    {% if sub_form.subject.errors %}
+                    <div class="text-danger">
+                        {% for error in sub_form.subject.errors %}
+                        <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-2">
+                    <label for="subject" class="form-label">
+                        {{ sub_form.credit.label }}
+                    </label>
+                    {{ sub_form.credit(class_="form-control mb-3") }}
+                    <!---->
+                    {% if sub_form.credit.errors %}
+                    <div class="text-danger">
+                        {% for error in sub_form.credit.errors %}
+                        <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-5">
+                    <label for="faculty" class="form-label">
+                        {{ sub_form.faculty.label }}
+                    </label>
+                    {{ sub_form.faculty(class_="form-control mb-3") }}
+                    <!---->
+                    {% if sub_form.faculty.errors %}
+                    <div class="text-danger">
+                        {% for error in sub_form.faculty.errors %}
+                        <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <hr />
+
+        <div class="row mb-3">
+            {% for section_form in form.sections: %}
+            <div class="col-6">
+                {{ section_form.hidden_tag() }}
+                <label for="section" class="form-label">
+                    {{ section_form.section.label }}
+                </label>
+                {{ section_form.section(class_="form-control") }}
+                <!---->
+                {% if section_form.section.errors %}
+                <div class="text-danger">
+                    {% for error in section_form.section.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <hr />
+
+        <div class="row mb-3">
+            {% for classroom_form in form.classrooms: %}
+            <div class="col-6">
+                {{ classroom_form.hidden_tag() }}
+                <label for="classroom" class="form-label">
+                    {{ classroom_form.classroom.label }}
+                </label>
+                {{ classroom_form.classroom(class_="form-control") }}
+                <!---->
+                {% if classroom_form.classroom.errors %}
+                <div class="text-danger">
+                    {% for error in classroom_form.classroom.errors %}
+                    <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <hr />
+
+        <div class="container container-custom">
+            {{ form.generate_btn(class_="btn btn-custom center my-3") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

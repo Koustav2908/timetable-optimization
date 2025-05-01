@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+<!---->
+{% block title %}Optimized Timetable{% endblock %}
+<!---->
+{% block content %}
+<h2 class="text-center my-4">{{ details.course }} - Optimized Timetables</h2>
+
+{% for section, table in timetable.items(): %}
+
+<div class="container mb-5 bg-white p-4 rounded shadow-sm mb-5">
+    <h3
+        class="mb-3 px-3 py-2 bg-white rounded shadow-sm border-start border-4 border-info"
+    >
+        Section {{ section }} - Room {{ table.classroom }}
+    </h3>
+    <table
+        class="table table-bordered table-hover text-center align-middle shadow-sm bg-white"
+    >
+        <thead class="table-dark">
+            {% set start_hour = 10 %} {% set start_minute = 0 %}
+            <tr>
+                <th class="sticky-col">Day \ Period</th>
+                {% set total_periods = details.periods | int %}
+                <!---->
+                {% set lunch_break = details.lunch_break | int %}
+                <!---->
+                {% set lunch_break_time = details.lunch_break_time %}
+                <!---->
+                {% for i in range(total_periods): %}
+                <!---->
+                {% set actual_index = i %}
+                <!---->
+                {% if i == lunch_break %}
+                <!---->
+                <th class="bg-warning">Lunch Break</th>
+                <!---->
+                {% endif %}
+                <!---->
+                {% if i >= lunch_break %}
+                <!---->
+                {% set actual_index = i - 1 %}
+                <!---->
+                {% endif %}
+                <!---->
+                {% set total_minutes = i * (details.duration | int) %}
+                <!---->
+                {% set hour = start_hour + ((start_minute + total_minutes) //
+                60) %}
+                <!---->
+                {% set minute = (start_minute + total_minutes) % 60 %}
+                <!---->
+                {% set end_total_minutes = total_minutes + (details.duration |
+                int) %}
+                <!---->
+                {% set end_hour = start_hour + ((start_minute +
+                end_total_minutes) // 60) %}
+                <!---->
+                {% set end_minute = (start_minute + end_total_minutes) % 60 %}
+                <!---->
+                <th>
+                    {{ "%02d:%02d" | format(hour, minute) }} - {{ "%02d:%02d" |
+                    format(end_hour, end_minute) }}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for day in WEEKDAYS: %}
+            <!---->
+            {% if day in table: %}
+            <tr>
+                <th>{{ day }}</th>
+                {% for subject_faculty in table[day]: %}
+                <!---->
+                {% if loop.index0 == lunch_break %}
+                <!---->
+                <td class="bg-warning">Lunch Break</td>
+                <!---->
+                {% endif %}
+                <!---->
+                {% for subject, faculty in subject_faculty.items(): %}
+                <!---->
+                {% if subject == "Free": %}
+                <td>Free</td>
+                {% else: %}
+                <td>{{ subject }} ({{ faculty }})</td>
+                {% endif %} {% endfor %} {% endfor %}
+            </tr>
+            {% endif %} {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr class="my-5" />
+{% endfor %}
+<!---->
+{% endblock %}

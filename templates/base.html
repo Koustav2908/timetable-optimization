@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{ bootstrap.load_css() }}
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='/css/styles.css') }}"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+    <body>
+        <div class="bg-dark text-white text-center py-5 mb-4">
+            <div class="container">
+                <h1 class="display-4 fw-bold">
+                    Welcome to the Timetable Generator
+                </h1>
+                <p class="lead">
+                    A Project by <strong>Fantastic 4</strong> using Genetic
+                    Algorithm
+                </p>
+            </div>
+        </div>
+        <main class="flex-grow-1">{% block content %} {% endblock %}</main>
+        <footer class="bg-light text-center text-muted py-4 mt-5">
+            <div class="container">
+                <p class="mb-1">Project Team: <strong>Fantastic 4</strong></p>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">Suprabhat Ghosh</li>
+                    <li class="list-inline-item">|</li>
+                    <li class="list-inline-item">Koustav Chatterjee</li>
+                    <li class="list-inline-item">|</li>
+                    <li class="list-inline-item">Ankita Hazra</li>
+                </ul>
+            </div>
+        </footer>
+        {{ bootstrap.load_js() }}
+    </body>
+</html>

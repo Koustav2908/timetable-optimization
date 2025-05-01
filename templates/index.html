@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+<!---->
+{% block title %} Timetable Generator {% endblock %}
+<!---->
+{% block content %}
+
+<div class="container text-center my-5">
+    <h2 class="mb-4">Generate Your Optimized Timetable</h2>
+    <a
+        href="{{ url_for('generate') }}"
+        class="btn btn-lg btn-custom btn-primary px-4 py-2"
+    >
+        Make a Timetable
+    </a>
+</div>
+
+{% endblock %}
