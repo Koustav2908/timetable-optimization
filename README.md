@@ -1,4 +1,4 @@
-# 🎓 Timetable Optimization using Genetic Algorithm
+# 🧫 Timetable Optimization using Genetic Algorithm
 
 This project generates optimized timetables based on number of classes per week, subjects, sections, breaks, faculty, etc using genetic algorithm. Genetic algorithm automatically creates conflict-free, optimized class schedules for schools, colleges, or universities.
 
