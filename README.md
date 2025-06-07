@@ -7,7 +7,7 @@ This project generates optimized timetables based on number of classes per week,
 ## 📁 Project Structure
 
 ```bash
-flash_card_generator/
+timetable_optimization/
 │
 ├── static/
 │   └── css/
@@ -35,6 +35,12 @@ flash_card_generator/
 2. **Get Features**: Users enter their details in the form provided like number of classes per week, faculty, subjects, sections, etc.
 3. **Processing**: `Genetic Algorithm` will work behind the scenes generating timetables for all the sections (eg, IT01, IT02, etc.).
 4. **Show Timetables**: Formats the timetables and displays them in tabular format in the website, which they can take a screenshot of.
+
+---
+
+## 🌐 Live Demo
+
+-   🚀 Check out the live hosted version [here](https://timetable-optimization.onrender.com)
 
 ---
 
